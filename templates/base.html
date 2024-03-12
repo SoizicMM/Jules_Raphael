@@ -16,36 +16,62 @@
 
     <ul class="flex space-x-8 mr-9  ">
 
-      <button class="text-slate-50 border-solid  bg-indigo-900 bg-indigo-900 rounded-md border-4 p-2"> <a href="/"> Accueil </a>  
+     
       {% if session['util'] %}
+c
+     
+      <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2" > <a href="/logout"> se déconnecter </a>   
       </button>
-      <button class="text-slate-50  border-solid  bg-indigo-900 border-violet-950 rounded-md border-4 p-2" > <a href="/logout"> se déconnecter </a>   
-      </button>
-      <button class="text-slate-50  border-solid  bg-indigo-900 border-violet-950 rounded-md border-4 p-2"> <a href="/profil">         
+      <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2"> <a href="/profil">         
        profil </a>      
       </button>
       {% else %}
       <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2" > <a href="/login"> se connecter </a>   
       </button>
-      <button class="text-slate-50  border-solid  bg-violet-950  border-violet-950  rounded-md border-4 p-2 "> <a href="/register">         
+      <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2 "> <a href="/register">         
        s'inscrire </a>      
       </button>
       {% endif %}
 
 
-    <label for="manga.anime" class="text-slate-50"> thème:</label>
+  <label for="manga.anime" class="text-slate-50"> thème:</label>
     <input list="manga-anime" id="manga.anime" name="manga.anime" />
+      <script>
+        function change_sujet_index() {
+          console.log(1)
+          var type = document.getElementById("manga-anime").value;
+          if (type == "anime") {
+            console.log(2)
+            document.getElementById("animes").style.display = "";
+            document.getElementById("mangas").style.display = "none";
+          }
+          else {
+            console.log(3)
+            document.getElementById("mangas").style.display = "";
+            document.getElementById("animes").style.display = "none";
+          }
 
-    <datalist id="manga-anime" >
-      <option value="anime"></option>
-      <option value="manga"></option>
-
-    </datalist>
+        };
+        </script>
+    <select id="manga-anime" class="selecteur" onchange="change_sujet_index()">
+      <option value="">Select One …</option>
+      <option value="anime">anime</option>
+      <option value="manga">manga</option>
+    </select>
     </ul>
 
   </header>
   {% block content %}
 
   {% endblock %}
+
+<footer  class=" bg-gray-800 flex  justify-between p-7">
+    <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2"> <a href="/add”"> vos suggestions </a>   </button>
+  
+   <h2 class="text-slate-50"> copyright ©</h2>
+  
+   <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2"> <a href="/h"> help </a>   </button>
+</footer>
+  
   </body>
 </html>
