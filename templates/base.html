@@ -16,18 +16,18 @@
 
     <ul class="flex space-x-8 mr-9  ">
 
-      <button class="text-slate-50"> <a href="/"> Accueil </a>  
+      <button class="text-slate-50 border-solid  bg-indigo-900 bg-indigo-900 rounded-md border-4 p-2"> <a href="/"> Accueil </a>  
       {% if session['util'] %}
       </button>
-      <button class="text-slate-50" > <a href="/logout"> se déconnecter </a>   
+      <button class="text-slate-50  border-solid  bg-indigo-900 border-violet-950 rounded-md border-4 p-2" > <a href="/logout"> se déconnecter </a>   
       </button>
-      <button class="text-slate-50"> <a href="/profil">         
+      <button class="text-slate-50  border-solid  bg-indigo-900 border-violet-950 rounded-md border-4 p-2"> <a href="/profil">         
        profil </a>      
       </button>
       {% else %}
-      <button class="text-slate-50" > <a href="/login"> se connecter </a>   
+      <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2" > <a href="/login"> se connecter </a>   
       </button>
-      <button class="text-slate-50"> <a href="/register">         
+      <button class="text-slate-50  border-solid  bg-violet-950  border-violet-950  rounded-md border-4 p-2 "> <a href="/register">         
        s'inscrire </a>      
       </button>
       {% endif %}

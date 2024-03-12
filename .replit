@@ -10,3 +10,7 @@ channel = "stable-23_05"
 [deployment]
 run =  ["gunicorn", "--bind", "0.0.0.0:80", "main:app"]
 deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 80
+externalPort = 80
