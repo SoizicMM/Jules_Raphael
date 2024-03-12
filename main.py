@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, url_for, redirect, session
 import os
+import bcrypt
 app = Flask(__name__)
 
 import pymongo
 mongo = pymongo.MongoClient(os.getenv("MONGO_KEY"))
-
 @app.route('/')
 def index():
   db_animes = mongo.db.animes
@@ -38,14 +38,46 @@ def manganime(type, id_manganime):
     manga = db_mangas.find_one({"_id": id_manganime})
     return render_template("manganime.html", manga=manga)
   return render_template("manganime.html")
-
-@app.route('/login')
+  
+@app.route('/login', methods=["POST", "GET"])
 def login():
-  return render_template("login.html")
+  if request.method == "POST":
+    db_utils = mongo.db.utilisateurs
+    util = db_utils.find_one({'nom': request.form['utilisateur']})
+    if util:
+      if bcrypt.checkpw(request.form['mot_de_passe'].encode('utf-8'),
+                        util['mdp']):
+        session['util'] = request.form['utilisateur']
+        return redirect(url_for("index"))
+      else:
+        return render_template('login.html', erreur="mot de passe incorrect")
+    else:
+      return render_template('login.html', erreur="L'utilisateur n'existe pas")
+  else:
+    return render_template('login.html')
 
-@app.route('/register')
+@app.route('/register', methods=['POST', 'GET'])
 def register():
-  return render_template("register.html")
+  if request.method == 'POST':
+    db_utils = mongo.db.utilisateurs
+    if (db_utils.find_one({'nom': request.form['utilisateur']})):
+      return render_template('register.html', erreur="Le nom existe déjà")
+    else:
+      if (request.form['mot_de_passe'] == request.form['verif_mot_de_passe']):
+        mdp_encrypte = bcrypt.hashpw(
+          request.form['mot_de_passe'].encode('utf-8'), bcrypt.gensalt())
+        db_utils.insert_one({
+          'nom': request.form['utilisateur'],
+          'mdp': mdp_encrypte
+        })
+        session['util'] = request.form['utilisateur']
+        return redirect(url_for('index'))
+      else:
+        return render_template(
+          'register.html', erreur="les mots de passe doivent être identiques")
+  else:
+    return render_template('register.html')
+
 
 @app.route('/add')
 def add():
