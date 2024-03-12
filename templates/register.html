@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if erreur %}
+  <p><strong>Erreur:</strong> {{ erreur }} </p>
+{% endif %}
+<div>
+  <form method="POST" action="">
+    <div>
+      <label>Utilisateur</label>
+      <input name="utilisateur" type="text" placeholder="Nom de l'utilisateur">
+    </div>
+    <div>
+      <label>Mot de passe</label>
+      <input name="mot_de_passe" type="password" placeholder="Mot de passe">
+    </div>
+    <div>
+      <label>Confirmation du mot de passe</label>
+      <input name="verif_mot_de_passe" type="password" placeholder="Mot de passe">
+    </div>
+    <div>
+      <button type="submit">
+        Créer un compte
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}
