@@ -2,16 +2,27 @@
 
 {% block content %}
 <p>test</p>
-<!-- stop
+
 <section class="grid grid-cols-3 gap-14">
- {% for manganime in manganimes %}
+ {% for anime in animes %}
   <div class="card">
-    <a href="/manganime/{{manganime['_id']}}">
-      <img src="{{manganime['url_image']}}"/>
-      <h2 href="{{manganime['url_manganime']}}">{{manganime["titre"]}}</h2>
+    <a href="/manganime/anime/{{anime['_id']}}">
+      <img src="{{anime['url_image']}}"/>
+      <h2>{{anime["titre"]}}</h2>
     </a>
   </div>
   {% endfor %}
-</section> -->
+</section>
+
+<section class="grid grid-cols-3 gap-14">
+ {% for manga in mangas %}
+  <div class="card">
+    <a href="/manganime/anime/{{manga['_id']}}">
+      <img src="{{manga['url_image']}}"/>
+      <h2>{{manga["titre"]}}</h2>
+    </a>
+  </div>
+  {% endfor %}
+</section>
 
 {% endblock %}
