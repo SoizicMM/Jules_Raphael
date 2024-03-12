@@ -3,7 +3,7 @@
 {% block content %}
 <p>test</p>
 
-<section class="grid grid-cols-3 gap-14">
+<section class="grid grid-cols-3 gap-14" id="animes" style="display: none">
  {% for anime in animes %}
   <div class="card">
     <a href="/manganime/anime/{{anime['_id']}}">
@@ -14,7 +14,7 @@
   {% endfor %}
 </section>
 
-<section class="grid grid-cols-3 gap-14">
+<section class="grid grid-cols-3 gap-14" id="mangas" style="display: none">
  {% for manga in mangas %}
   <div class="card">
     <a href="/manganime/anime/{{manga['_id']}}">
