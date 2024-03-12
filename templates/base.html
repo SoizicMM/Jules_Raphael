@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Mon po</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <header class="bg-gray-800 flex  justify-between  p-12 ">
+
+    <h1 class="font-sans  text-2xl text-slate-50"> Nom du site </h1>
+
+    <ul class="flex space-x-8 mr-9  ">
+
+      <button class="text-slate-50"> <a href="/"> Accueil </a>  
+      {% if session['util'] %}
+      </button>
+      <button class="text-slate-50" > <a href="/logout"> se déconnecter </a>   
+      </button>
+      <button class="text-slate-50"> <a href="/profil">         
+       profil </a>      
+      </button>
+      {% else %}
+      <button class="text-slate-50" > <a href="/login"> se connecter </a>   
+      </button>
+      <button class="text-slate-50"> <a href="/register">         
+       s'inscrire </a>      
+      </button>
+      {% endif %}
+
+
+    <label for="manga.anime" class="text-slate-50"> thème:</label>
+    <input list="manga-anime" id="manga.anime" name="manga.anime" />
+
+    <datalist id="manga-anime" >
+      <option value="anime"></option>
+      <option value="manga"></option>
+
+    </datalist>
+    </ul>
+
+  </header>
+  {% block content %}
+
+  {% endblock %}
+  </body>
+</html>
