@@ -21,14 +21,6 @@ def index():
   # return render_template("index.html")
   return render_template("index.html", animes=animes, mangas=mangas)
 
-@app.route('/mangas')
-def mangas():
-  return render_template("mangas.html")
-
-@app.route('/animes')
-def animes():
-  return render_template("animes.html")
-
 @app.route('/manganime/<type>/<id_manganime>')
 def manganime(type, id_manganime):
   if type == "anime" :
