@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, url_for, redirect, session
 import os
 import bcrypt
-app = Flask(__name__)
-
 import pymongo
+
+app = Flask(__name__)
+app.secret_key = "relativement secret"
+
 mongo = pymongo.MongoClient(os.getenv("MONGO_KEY"))
 @app.route('/')
 def index():
@@ -89,7 +91,8 @@ def admin():
 
 @app.route('/logout')
 def logout():
-  return render_template("logout.html")
+  session.clear()
+  return redirect(url_for("index"))
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=80)
