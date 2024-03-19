@@ -26,11 +26,11 @@ def manganime(type, id_manganime):
   if type == "anime" :
     db_animes = mongo.db.animes
     anime = db_animes.find_one({"_id": id_manganime})
-    return render_template("manganime.html", anime=anime)
+    return render_template("manganime.html", anime=anime, type=type)
   elif type == "manga" :
     db_mangas = mongo.db.mangas
     manga = db_mangas.find_one({"_id": id_manganime})
-    return render_template("manganime.html", manga=manga)
+    return render_template("manganime.html", manga=manga, type=type)
   return render_template("manganime.html")
   
 @app.route('/login', methods=["POST", "GET"])
