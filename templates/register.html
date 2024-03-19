@@ -3,22 +3,22 @@
 {% if erreur %}
   <p><strong>Erreur:</strong> {{ erreur }} </p>
 {% endif %}
-<div>
-  <form method="POST" action="">
-    <div class="flex-wrap-reverse">
-      <label>Utilisateur</label>
-      <input name="utilisateur" type="text" placeholder="Nom de l'utilisateur">
+<div class="flex items-center justify-center pt-20">
+  <form method="POST" action="" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="flex-wrap-reverse mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="utilisateur">Utilisateur</label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="utilisateur" type="text" placeholder="Nom de l'utilisateur">
+    </div>
+    <div class="mb-6">
+      <label  class="block text-gray-700 text-sm font-bold mb-2" for="mot_de_passe">Mot de passe</label>
+      <input class="shadow appearance-none border  rounded w-full py-2 px-3 text-violet-900 mb-3 leading-tight focus:outline-none focus:shadow-outline"name="mot_de_passe" type="password" placeholder="Mot de passe">
+    </div>
+    <div class="mb-6">
+      <label  class="block text-gray-700 text-sm font-bold mb-2">Confirmation du mot de passe</label>
+      <input class="shadow appearance-none border  rounded w-full py-2 px-3 text-violet-900 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="verif_mot_de_passe" type="password" placeholder="Mot de passe">
     </div>
     <div>
-      <label>Mot de passe</label>
-      <input name="mot_de_passe" type="password" placeholder="Mot de passe">
-    </div>
-    <div>
-      <label>Confirmation du mot de passe</label>
-      <input name="verif_mot_de_passe" type="password" placeholder="Mot de passe">
-    </div>
-    <div>
-      <button type="submit">
+      <button  class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4"type="submit">
         Créer un compte
       </button>
     </div>
