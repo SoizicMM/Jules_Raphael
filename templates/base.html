@@ -44,16 +44,21 @@ c
             document.getElementById("animes").style.display = "";
             document.getElementById("mangas").style.display = "none";
           }
-          else {
+          else if (type == "manga"){
             console.log(3)
             document.getElementById("mangas").style.display = "";
             document.getElementById("animes").style.display = "none";
+          }
+          else {
+            console.log(3)
+            document.getElementById("mangas").style.display = "";
+            document.getElementById("animes").style.display = "";
           }
 
         };
         </script>
     <select id="manga-anime" class="selecteur" onchange="change_sujet_index()">
-      <option value="">Select One …</option>
+      <option value="">Select One … (or all)</option>
       <option value="anime">anime</option>
       <option value="manga">manga</option>
     </select>
