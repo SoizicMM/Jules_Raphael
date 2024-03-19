@@ -1,10 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% for anime in animes %}
+
 <text>{{anime["titre"]}} </text>
+<img src="{{anime['url_image']}}"/>
+<text>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</text>
 
+{% endfor %}
 
+<!-- les commentaires -->
+<text>
+  Commentaires
+</text>
+  {% for commentaire in commentaires %}
+   <p class="text-center font-bold text-lg">{{commentaire.auteur}}</p>
+   <p class="text-lg">{{commentaire.description}}</p>
 
+{% endfor %}
+<!-- formulaire de commentaire -->
+<form class="" method="POST" action="">
+  <textarea name="description" placeholder=" Votre commentaire ici" class="border border-gray-400 h-16 flex-1 mr-6"></textarea>
+  <button class="" type="submit">Commenter</button>
 
+</form>
 
 {% endblock %}
