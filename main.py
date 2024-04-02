@@ -3,35 +3,29 @@ import os
 import bcrypt
 import pymongo
 
+from bson.objectid import ObjectId
+
 app = Flask(__name__)
 app.secret_key = "relativement secret"
 
 mongo = pymongo.MongoClient(os.getenv("MONGO_KEY"))
 @app.route('/')
 def index():
-  db_animes = mongo.db.animes
-  animes = db_animes.find({})
-  db_mangas = mongo.db.mangas
-  mangas = db_mangas.find({})
+  db_manganime = mongo.db.manganime
+  manganimes = db_manganime.find({})
   # variable qui servira a contenir les infos de la bdd
   # titre du manganime : titre
   # image du manganime : url_image
   # lien du manganime : url_manganime
   # id du manganime : _id
   # return render_template("index.html")
-  return render_template("index.html", animes=animes, mangas=mangas)
+  return render_template("index.html", manganimes=manganimes)
 
-@app.route('/manganime/<type>/<id_manganime>')
-def manganime(type, id_manganime):
-  if type == "anime" :
-    db_animes = mongo.db.animes
-    anime = db_animes.find_one({"_id": id_manganime})
-    return render_template("manganime.html", anime=anime, type=type)
-  elif type == "manga" :
-    db_mangas = mongo.db.mangas
-    manga = db_mangas.find_one({"_id": id_manganime})
-    return render_template("manganime.html", manga=manga, type=type)
-  return render_template("manganime.html")
+@app.route('/manganime/<id_manganime>')
+def manganime(id_manganime):
+  db_manganime = mongo.db.manganime
+  manganime = db_manganime.find_one({"_id": ObjectId(id_manganime)})
+  return render_template("manganime.html", manganime=manganime)
   
 @app.route('/login', methods=["POST", "GET"])
 def login():

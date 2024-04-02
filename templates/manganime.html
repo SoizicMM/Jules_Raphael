@@ -1,20 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% for anime in animes %}
+<h2 class="py-5 text-xl">{{manganime["titre"]}} </h2>
+  <img src="{{manganime['url_image']}}" class="py-5">
+  <text class="py-5">
+  {{manganime["description"]}}
+  </text>
 
-<text>{{anime["titre"]}} </text>
-<img src="{{anime['url_image']}}"/>
-<text>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laboru
-</text>
-
-{% endfor %}
 
 <!-- les commentaires -->
-<text>
+<p class="py-5">
   Commentaires
-</text>
+</p>
   {% for commentaire in commentaires %}
    <p class="text-center font-bold text-lg">{{commentaire.auteur}}</p>
    <p class="text-lg">{{commentaire.description}}</p>
