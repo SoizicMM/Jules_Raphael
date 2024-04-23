@@ -1,0 +1,34 @@
+{% extends 'admin/back_base.html' %}
+
+
+{% block content %}
+
+<table>
+  <thead>
+    <tr>
+      <th class="border border-slate-300 p-2">Titre</th>
+      <th class="border border-slate-300 p-2"> Image </th>
+      <th class="border border-slate-300 p-2"> Description </th>
+    </tr>
+  </thead>
+  <tbody>
+   <tr>
+     <td class="border border-slate-300 p-2">exemple de titre</td>
+     <td class="border border-slate-300 p-2"> <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/e/e6/Logo_No_Game_No_Life.png/220px-Logo_No_Game_No_Life.png" class="max-w-96 max-h-41" ></td>
+     <td class="border border-slate-300 p-2"> exemple de description </td>  
+     <td class="border border-slate-300 p-2"><a href=""> Voir </td>
+      <td class="border border-slate-300 p-2"><a href=""> supprimer </td>
+      <td class="border border-slate-300 p-2"><a href=""> modifier </td>
+   </tr>
+    <tr>
+      <td class="border border-slate-300 p-2">exemple de titre</td>
+       <td class="border border-slate-300 p-2"><img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/b2/Death_Note_Logo.svg/langfr-330px-Death_Note_Logo.svg.png" class="max-w-96 max-h-41" ></td>
+       <td class="border border-slate-300 p-2"> exemple de description </td> 
+      <td class="border border-slate-300 p-2"><a href=""> Voir </td>
+      <td class="border border-slate-300 p-2"><a href=""> supprimer </td>
+      <td class="border border-slate-300 p-2"><a href=""> modifier </td>
+    </tr>
+  </tbody>
+</table>
+
+{% endblock %}

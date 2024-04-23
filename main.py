@@ -67,13 +67,17 @@ def register():
     return render_template('register.html')
 
 
+
+
 @app.route('/add')
 def add():
   return render_template("add.html")
 
-@app.route('/admin')
-def admin():
-  return render_template("admin.html")
+@app.route('/admin/back_animemanga')
+def back_animemanga():
+  db_manganime = mongo.db.manganime
+  manganimes = db_manganime.find({})
+  return render_template("admin/back_animemanga.html", manganime = manganime)
 
 @app.route('/logout')
 def logout():

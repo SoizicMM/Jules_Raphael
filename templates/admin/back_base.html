@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Mon po</title>
+  <link href="/static/style.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <header class="bg-red-700 flex  justify-between  p-12 ">
+  <a href="/">
+    <h1 class="font-sans  text-2xl text-slate-50"> Administration </h1>
+  </a>
+    <ul class="flex space-x-8 mr-9  ">
+
+
+      {% if session['util'] %}
+c
+
+      <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2" > <a href="/logout"> se déconnecter </a>   
+      </button>
+      <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2"> <a href="/profil">         
+       profil </a>      
+      </button>
+      {% else %}
+      <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2" > <a href="/login"> se connecter </a>   
+      </button>
+      <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2 "> <a href="/register">         
+       s'inscrire </a>      
+      </button>
+      {% endif %}
+
+
+      <!--
+       <script>
+        function change_sujet_index() {
+          console.log(1)
+          var type = document.getElementById("manga-anime").value;
+          if (type == "anime") {
+            console.log(2)
+            document.getElementById("animes").style.display = "";
+            document.getElementById("mangas").style.display = "none";
+          }
+          else if (type == "manga"){
+            console.log(3)
+            document.getElementById("mangas").style.display = "";
+            document.getElementById("animes").style.display = "none";
+          }
+          else {
+            console.log(3)
+            document.getElementById("mangas").style.display = "";
+            document.getElementById("animes").style.display = "";
+          }
+
+        };
+        </script> -->
+      <!-- <select id="manga-anime" class="selecteur">
+      <option value="">Select One … (or all)</option>
+      <option value="anime">anime</option>
+      <option value="manga">manga</option>
+    </select> -->
+    </ul>
+
+  </header>
+  {% block content %}
+
+  {% endblock %}
+
+<footer  class=" bg-gray-800 flex  justify-between p-7">
+    <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2"> <a href="/add”"> vos suggestions </a>   </button>
+
+   <h2 class="text-slate-50"> copyright ©</h2>
+
+   <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2"> <a href="/h"> help </a>   </button>
+</footer>
+
+  </body>
+</html>
