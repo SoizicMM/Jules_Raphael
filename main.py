@@ -77,7 +77,7 @@ def add():
 def back_animemanga():
   db_manganime = mongo.db.manganime
   manganimes = db_manganime.find({})
-  return render_template("admin/back_animemanga.html", manganime = manganime)
+  return render_template("admin/back_animemanga.html", manganimes = manganimes)
 
 @app.route('/logout')
 def logout():

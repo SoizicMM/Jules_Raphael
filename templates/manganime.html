@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2 class="py-5 text-xl">{{manganime["titre"]}} </h2>
-  <img src="{{manganime['url_image']}}" class="py-5">
+<h2 class="py-5 text-xl flex items-center justify-center ">{{manganime["titre"]}} </h2>
+
+
+  <img src="{{manganime['url_image']}}" class="py-5 h-96 w-96  flex items-center justify-center">
   <text class="py-5">
   {{manganime["description"]}}
   </text>
@@ -17,6 +19,7 @@
    <p class="text-lg">{{commentaire.description}}</p>
 
 {% endfor %}
+
 <!-- formulaire de commentaire -->
 <form class="" method="POST" action="">
   <textarea name="description" placeholder=" Votre commentaire ici" class="border border-gray-400 h-16 flex-1 mr-6"></textarea>
