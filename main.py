@@ -67,7 +67,11 @@ def register():
     return render_template('register.html')
 
 
-
+@app.route("/supprimer/<id>")
+def supprimer_manganime(id):
+  db_manganime = mongo.db.manganime
+  db_manganime.delete_one({"_id" : ObjectId(id)})
+  return "entrée supprimée"
 
 @app.route('/add')
 def add():
