@@ -2,13 +2,16 @@
 
 {% block content %}
 
-<section class=" grid grid-cols-3 gap-7 py-8 ml-8">
+
+<section class=" grid grid-cols-3 gap-7 py-8   bg-slate-500">
  {% for manganime in manganimes %}
-  <div class="card">
+  <div class=" flex justify-evenly my-4 ">
+  <div class="card ">
     <a href="/manganime/{{manganime['_id']}}">
       <img src="{{manganime['url_image']}}"/>
       <h2>{{manganime["titre"]}}</h2>
     </a>
+  </div>
   </div>
   {% endfor %}
 </section>
