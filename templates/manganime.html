@@ -1,30 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2 class="py-5 text-xl flex items-center justify-center ">{{manganime["titre"]}} </h2>
+ <div class="flex bg-slate-500 ">
+    <div class="bg-teal-600 w-2/5 text-center">
+      PUB
+    </div>
+
+  <div>
+      
+    <h2 class="py-5 text-7xl text-center ">{{manganime["titre"]}} </h2>
+
+  <div class="flex justify-center">
+   <img src="{{manganime['url_image']}}" class="py-5  h-96 w-3/5 ">
+   <text class="py-5">
+  </div>  
+   {{manganime["description"]}}
+   </text>
+   
 
 
-  <img src="{{manganime['url_image']}}" class="py-5 h-96 w-96  flex items-center justify-center">
-  <text class="py-5">
-  {{manganime["description"]}}
-  </text>
-
-
-<!-- les commentaires -->
-<p class="py-5">
-  Commentaires
-</p>
+  <!-- les commentaires -->
+  <p class="py-5 text-center text-3xl">
+   Commentaires
+  </p>
   {% for commentaire in commentaires %}
    <p class="text-center font-bold text-lg">{{commentaire.auteur}}</p>
    <p class="text-lg">{{commentaire.description}}</p>
 
-{% endfor %}
 
-<!-- formulaire de commentaire -->
-<form class="" method="POST" action="">
-  <textarea name="description" placeholder=" Votre commentaire ici" class="border border-gray-400 h-16 flex-1 mr-6"></textarea>
-  <button class="" type="submit">Commenter</button>
+  {% endfor %}
 
-</form>
+  <!-- formulaire de commentaire -->
+  <form class="flex items-center px-48 pt-3 py-3" method="POST" action="">
+  <textarea name="description" placeholder=" Votre commentaire ici" class="border border-gray-400 h-16 flex-1 
+  mr-6"></textarea>
+   <button class="w-32 h-12 flex-none bg-emerald-300 hover:bg-emerald-500 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Commenter</button>
+
+ </form>
+     </div>
+
+   <div class="bg-teal-600 w-2/5 text-center">
+  PUB
+</div>
+ </div>   
 
 {% endblock %}
