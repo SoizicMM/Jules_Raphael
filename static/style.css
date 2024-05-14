@@ -9,6 +9,10 @@
   --card-width: calc(var(--card-height) * 1.5);
 }
 
+.font {
+  font-family: 'Sedan SC';font-size: 22px;
+}
+
 .card {
   background: #191c29;
   width: var(--card-width);
