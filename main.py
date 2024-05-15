@@ -4,6 +4,7 @@ import bcrypt
 import pymongo
 
 from bson.objectid import ObjectId
+from pymongo.operations import ReplaceOne
 
 app = Flask(__name__)
 app.secret_key = "relativement secret"
@@ -76,7 +77,23 @@ def supprimer_manganime(id):
 @app.route('/add')
 def add():
   return render_template("add.html")
+  
+@app.route('/modifier/<id_manganime>', methods=["POST", "GET"])
+def modifier(id_manganime):
+    db_manganime = mongo.db.manganime
+    manganime = db_manganime.find_one({"_id": ObjectId(id_manganime)})
 
+    if request.method == "POST":
+      titre = request.form['titre']
+      description = request.form['description']
+      db_manganime.update_one({"_id": ObjectId(id_manganime)}, {"$set": {
+            "titre": titre,
+            "description": description
+        }})
+      return redirect(url_for("index"))
+    else:
+        return render_template("modifier.html", manganime=manganime)
+      
 @app.route('/admin/back_animemanga')
 def back_animemanga():
   db_manganime = mongo.db.manganime
