@@ -5,12 +5,13 @@
 
 <section>
   <div class=" flex justify-evenly my-4 ">
-  <div class="card ">
+  <div>
     
       <img src="{{manganime['url_image']}}"/>
       <form method="POST">
         <input name="titre" type="text" value="{{manganime['titre']}}"></input>
-        <input name="description" type="text" value="{{manganime['description']}}"></input>
+        
+        <textarea name="description" type="text" value="{{manganime['description']}}">{{manganime['description']}}</textarea>
       <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4" type="submit">
           Modifier
         </button>
