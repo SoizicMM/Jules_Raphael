@@ -10,6 +10,8 @@ app = Flask(__name__)
 app.secret_key = "relativement secret"
 
 mongo = pymongo.MongoClient(os.getenv("MONGO_KEY"))
+
+
 @app.route('/')
 def index():
   db_manganime = mongo.db.manganime
@@ -22,12 +24,14 @@ def index():
   # return render_template("index.html")
   return render_template("index.html", manganimes=manganimes)
 
+
 @app.route('/manganime/<id_manganime>')
 def manganime(id_manganime):
   db_manganime = mongo.db.manganime
   manganime = db_manganime.find_one({"_id": ObjectId(id_manganime)})
   return render_template("manganime.html", manganime=manganime)
-  
+
+
 @app.route('/login', methods=["POST", "GET"])
 def login():
   if request.method == "POST":
@@ -45,6 +49,7 @@ def login():
   else:
     return render_template('login.html')
 
+
 @app.route('/register', methods=['POST', 'GET'])
 def register():
   if request.method == 'POST':
@@ -54,16 +59,17 @@ def register():
     else:
       if (request.form['mot_de_passe'] == request.form['verif_mot_de_passe']):
         mdp_encrypte = bcrypt.hashpw(
-          request.form['mot_de_passe'].encode('utf-8'), bcrypt.gensalt())
+            request.form['mot_de_passe'].encode('utf-8'), bcrypt.gensalt())
         db_utils.insert_one({
-          'nom': request.form['utilisateur'],
-          'mdp': mdp_encrypte
+            'nom': request.form['utilisateur'],
+            'mdp': mdp_encrypte
         })
         session['util'] = request.form['utilisateur']
         return redirect(url_for('index'))
       else:
         return render_template(
-          'register.html', erreur="les mots de passe doivent être identiques")
+            'register.html',
+            erreur="les mots de passe doivent être identiques")
   else:
     return render_template('register.html')
 
@@ -71,39 +77,46 @@ def register():
 @app.route("/supprimer/<id>")
 def supprimer_manganime(id):
   db_manganime = mongo.db.manganime
-  db_manganime.delete_one({"_id" : ObjectId(id)})
+  db_manganime.delete_one({"_id": ObjectId(id)})
   return "entrée supprimée"
+
 
 @app.route('/add')
 def add():
   return render_template("add.html")
-  
+
+
 @app.route('/modifier/<id_manganime>', methods=["POST", "GET"])
 def modifier(id_manganime):
-    db_manganime = mongo.db.manganime
-    manganime = db_manganime.find_one({"_id": ObjectId(id_manganime)})
+  db_manganime = mongo.db.manganime
+  manganime = db_manganime.find_one({"_id": ObjectId(id_manganime)})
 
-    if request.method == "POST":
-      titre = request.form['titre']
-      description = request.form['description']
-      db_manganime.update_one({"_id": ObjectId(id_manganime)}, {"$set": {
+  if request.method == "POST":
+    titre = request.form['titre']
+    description = request.form['description']
+    db_manganime.update_one(
+        {"_id": ObjectId(id_manganime)},
+        {"$set": {
             "titre": titre,
             "description": description
         }})
-      return redirect(url_for("index"))
-    else:
-        return render_template("modifier.html", manganime=manganime)
-      
+    return redirect(url_for("index"))
+  else:
+    return render_template("modifier.html", manganime=manganime)
+
+
 @app.route('/admin/back_animemanga')
 def back_animemanga():
   db_manganime = mongo.db.manganime
   manganimes = db_manganime.find({})
-  return render_template("admin/back_animemanga.html", manganimes = manganimes)
+  return render_template("admin/back_animemanga.html", manganimes=manganimes)
+
 
 @app.route('/logout')
 def logout():
   session.clear()
   return redirect(url_for("index"))
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=80)

@@ -1,17 +1,80 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Le code CSS est la mais il faut nettoyer-->
+<style>
+  body, html {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .material-textfield {
+    position: relative;  
+  }
 
+  label {
+    position: absolute;
+    font-size: 1rem;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: gray;
+    padding: 0 0.3rem;
+    margin: 0 0.5rem;
+    transition: .1s ease-out;
+    transform-origin: left top;
+    pointer-events: none;
+  }
+  input {
+    font-size: 1rem;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 5px;  
+    color: gray;
+    transition: 0.1s ease-out;
+  }
+  textarea {
+    font-size: 1rem;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 5px;  
+    color: gray;
+    transition: 0.1s ease-out;
+  }
+  input:focus {
+    border-color: #6200EE;  
+  }
+  input:focus + label {
+    color: #6200EE;
+    top: 0;
+    transform: translateY(-50%) scale(.9);
+  }
+  input:not(:placeholder-shown) + label {
+    top: 0;
+    transform: translateY(-50%) scale(.9);
+  }
+</style>
 <section>
-  <div class=" flex justify-evenly my-4 ">
+  <div class=" flex justify-evenly my-4 "style="flex-direction: column; margin : auto; width : 80%">
   <div>
     
-      <img src="{{manganime['url_image']}}"/>
-      <form method="POST">
-        <input name="titre" type="text" value="{{manganime['titre']}}"></input>
-        
-        <textarea name="description" type="text" value="{{manganime['description']}}">{{manganime['description']}}</textarea>
+      <img class="object-scale-down" src="{{manganime['url_image']}}"/>
+      <form method="POST" style="display: flex; flex-direction: column;" class="py-8">
+        <div class="py-3">
+        <input name="titre" type="text" value="{{manganime['titre']}}" class="container material-textfield"></input>
+        </div>
+        <div class="py-3">
+        <textarea name="description" type="text" value="{{manganime['description']}}" class="container material-textfield">{{manganime['description']}}</textarea>
+        </div>
       <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4" type="submit">
           Modifier
         </button>
