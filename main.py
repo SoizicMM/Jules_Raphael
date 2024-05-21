@@ -130,6 +130,6 @@ def recherche():
       }
     }]
   )
-  return render_template("resultats.html", manganimes=resulats)
+  return render_template("resultats.html", manganimes=resultats)
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=80)
