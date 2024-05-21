@@ -120,7 +120,7 @@ def logout():
 def recherche():
   recherche_animanga = request.form["query"]
   db_manganime = mongo.db.manganime
-  resulats = db_manganime.aggregate(
+  resultats = db_manganime.aggregate(
     [{
       "$match" : {
         "titre" : {
