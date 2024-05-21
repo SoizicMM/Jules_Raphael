@@ -116,7 +116,20 @@ def back_animemanga():
 def logout():
   session.clear()
   return redirect(url_for("index"))
-
-
+@app.route("/recherche", methods=["POST"])
+def recherche():
+  recherche_animanga = request.form["query"]
+  db_manganime = mongo.db.manganime
+  resulats = db_manganime.aggregate(
+    [{
+      "$match" : {
+        "titre" : {
+          "$regex" : recherche_animanga,
+          "$options" : "i"
+        }
+      }
+    }]
+  )
+  return render_template("resultats.html", manganimes=resulats)
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=80)
