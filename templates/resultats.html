@@ -2,9 +2,18 @@
 
 {% block content %}
 <h1>Résultats de la recherche</h1>
-  {% for manganime in manganimes %}
-   <p>{{ manganime['titre'] }}</p>
-   {% endfor %}
+  <section class=" grid grid-cols-3 gap-7 py-8   bg-slate-500">
+ {% for manganime in manganimes %}
+  <div class=" flex justify-evenly my-4 ">
+  <div class="card ">
+    <a href="/manganime/{{manganime['_id']}}">
+      <img src="{{manganime['url_image']}}"/>
+      <h2>{{manganime["titre"]}}</h2>
+    </a>
+  </div>
+  </div>
+  {% endfor %}
+</section>
 
 {% endblock %}
    
