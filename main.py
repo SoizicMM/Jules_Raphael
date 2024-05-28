@@ -87,8 +87,8 @@ def add():
     db_manganime = mongo.db.manganime
     db_manganime.insert_one({
         'titre': request.form['titre'],
-        'url_image': request.form['url_image'],
-        'description': request.form['description'],
+        'url_image': request.form['image'],
+        'description': request.form['Description'],
         'valide': False
       })
     return url_for('/')
