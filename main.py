@@ -81,7 +81,7 @@ def supprimer_manganime(id):
   return "entrée supprimée"
 
 
-@app.route('/add', methods=["POST"])
+@app.route('/add', methods=["POST", 'GET'])
 def add():
   if request.method == 'POST':
     db_manganime = mongo.db.manganime
@@ -91,9 +91,9 @@ def add():
         'description': request.form['Description'],
         'valide': False
       })
-    return url_for('/')
+    return redirect(url_for('index'))
   else:
-    return render_template('add.html')
+    return render_template('add_manga.html')
 
 @app.route('/modifier/<id_manganime>', methods=["POST", "GET"])
 def modifier(id_manganime):
