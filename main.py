@@ -15,7 +15,7 @@ mongo = pymongo.MongoClient(os.getenv("MONGO_KEY"))
 @app.route('/')
 def index():
   db_manganime = mongo.db.manganime
-  manganimes = db_manganime.find({})
+  manganimes = db_manganime.find({"valide": True})
   # variable qui servira a contenir les infos de la bdd
   # titre du manganime : titre
   # image du manganime : url_image
@@ -81,10 +81,19 @@ def supprimer_manganime(id):
   return "entrée supprimée"
 
 
-@app.route('/add')
+@app.route('/add', methods=["POST"])
 def add():
-  return render_template("add.html")
-
+  if request.method == 'POST':
+    db_manganime = mongo.db.manganime
+    db_manganime.insert_one({
+        'titre': request.form['titre'],
+        'url_image': request.form['url_image'],
+        'description': request.form['description'],
+        'valide': False
+      })
+    return url_for('/')
+  else:
+    return render_template('add.html')
 
 @app.route('/modifier/<id_manganime>', methods=["POST", "GET"])
 def modifier(id_manganime):
