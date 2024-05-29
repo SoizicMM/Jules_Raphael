@@ -1,0 +1,29 @@
+{% extends 'admin/back_base.html' %}
+
+
+{% block content %}
+
+<table>
+  <thead>
+    <tr>
+      <th class="border border-slate-300 p-2">Titre</th>
+      <th class="border border-slate-300 p-2">Image</th>
+      <th class="border border-slate-300 p-2">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for manganime in manganimes %}
+    <tr>
+      <td class="border border-slate-300 p-2">{{manganime["titre"]}}</td>
+      <td class="border border-slate-300 p-2"><img src="{{manganime['url_image']}}" class="max-w-96 max-h-48"></td>
+      <td class="border border-slate-300 p-2">{{manganime["description"]}}</td>
+      <td class="border border-slate-300 p-2"><a href="/modifier/{{manganime['_id']}}">modifier</a></td>
+      <td class="border border-slate-300 p-2"><a href="/validation/{{manganime['_id']}}/valide">valider</a></td>
+      <td class="border border-slate-300 p-2"><a href="/validation/{{manganime['_id']}}/valide">refuser</a></td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+{% endblock %}

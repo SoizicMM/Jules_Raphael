@@ -125,6 +125,7 @@ def back_animemanga():
 def logout():
   session.clear()
   return redirect(url_for("index"))
+
 @app.route("/recherche", methods=["POST"])
 def recherche():
   recherche_animanga = request.form["query"]
@@ -139,6 +140,29 @@ def recherche():
       }
     }]
   )
-  return render_template("resultats.html", manganimes=resultats)
+  return render_template("index.html", manganimes=resultats)
+  
+@app.route("/validation/<id_manganime>/<statut>")
+def validation(id_manganime, statut):
+  db_manganime = mongo.db.manganime
+  if id_manganime and statut :
+    if statut == "valide" : 
+      
+      db_manganime.update_one(
+        {"_id": ObjectId(id_manganime)},
+        {"$set": {
+          "valide": True
+        }}
+      )
+    elif statut == "refuse":
+      db_manganime.delete_one({"_id": ObjectId(id_manganime)})
+    return redirect(url_for("file_d_attente"))
+@app.route('/file_d_attente')
+def file_d_attente():
+  db_manganime = mongo.db.manganime
+  manganimes = db_manganime.find({"valide": False})
+
+  return render_template('admin/back_validation.html', manganimes=manganimes)
+
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=80)
