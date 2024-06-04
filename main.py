@@ -177,6 +177,8 @@ def file_d_attente():
   manganimes = db_manganime.find({"valide": False})
 
   return render_template('admin/back_validation.html', manganimes=manganimes)
-
+@app.route("/help")
+def help():
+  return render_template("help.html")
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=80)
