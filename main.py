@@ -141,7 +141,8 @@ def recherche():
     }]
   )
   return render_template("index.html", manganimes=resultats)
-#si la route est souligné en rouge, c normale. il n'y a pas d'erreurs lors de l'éxecution 
+#si la route est souligné en rouge, c normale. 
+#il n'y a pas d'erreurs lors de l'éxecution
 @app.route("/validation/<id_manganime>/<statut>")
 def validation(id_manganime, statut):
   db_manganime = mongo.db.manganime
