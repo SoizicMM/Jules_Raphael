@@ -25,11 +25,24 @@ def index():
   return render_template("index.html", manganimes=manganimes)
 
 
-@app.route('/manganime/<id_manganime>')
+@app.route('/manganime/<id_manganime>', methods=["POST", "GET"])
 def manganime(id_manganime):
   db_manganime = mongo.db.manganime
+  db_commentaires = mongo.db.commentaires
   manganime = db_manganime.find_one({"_id": ObjectId(id_manganime)})
-  return render_template("manganime.html", manganime=manganime)
+  commentaires = db_commentaires.find({"id_manganime": ObjectId(id_manganime)})
+  if request.method == "POST":
+    if "util" not in session:
+      return render_template("login.html")
+    else:
+      description = request.form['description']
+      db_commentaires.insert_one({
+        "id_manganime": ObjectId(id_manganime),
+        "description": description,
+        "auteur": session['util']
+      })
+      return render_template("manganime.html", manganime=manganime, commentaires=commentaires)
+  return render_template("manganime.html", manganime=manganime, commentaires=commentaires)
 
 
 @app.route('/login', methods=["POST", "GET"])
