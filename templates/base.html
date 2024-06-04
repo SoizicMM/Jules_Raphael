@@ -12,10 +12,10 @@
 <body>
   <header class="bg-gray-800 flex  justify-between  p-12 ">
   <a href="/">
-    <h1 class="hidden md:block font-sans  text-4xl text-slate-50"> Nom du site </h1>
+    <h1 class="hidden sm:block font-sans  text-4xl text-slate-50"> Nom du site </h1>
   </a>
   <a href="/admin/back_animemanga">
-    <p>
+    <p class=" hidden sm:block">
       Back_anime/manga
     </p>
   </a>
@@ -24,23 +24,23 @@
      
       {% if session['util'] %}
      
-      <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2" > <a href="/logout"> se déconnecter </a>   
+      <button class="text-xs md:text-base text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2" > <a href="/logout"> se déconnecter </a>   
       </button>
       <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2"> <a href="/profil">         
        profil </a>      
       </button>
       {% else %}
-      <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2" > <a href="/login"> se connecter </a>   
+      <button class="text-xs md:text-base  text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2" > <a href="/login"> se connecter </a>   
       </button>
-      <button class="text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2 "> <a href="/register">         
+      <button class="text-xs md:text-base text-slate-50  border-solid  bg-indigo-950  rounded-md border-indigo-950 border-4 p-2 "> <a href="/register">         
        s'inscrire </a>      
       </button>
       {% endif %}
 
       <!-- BARRE DE RECHERCHE  -->
       <form action="recherche" method="POST" >
-        <input type="text" name="query" placeholder="Entrez votre recherche">
-        <input type="submit" value="Rechercher" class="text-slate-50" >
+        <input type="text" name="query" placeholder="Entrez votre recherche" class="w-24 md:w-40">
+        <input type="submit" value="Rechercher" class=" text-xs md:text-base text-slate-50" >
       </form>
 
       <!--
