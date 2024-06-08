@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 
- <div class="flex bg-slate-500 ">
+ <div class="flex w-full bg-slate-500 ">
     <div class="bg-teal-600 w-1/6 text-center">
       PUB
     </div>
 
   <div class="font w-4/6">
       
-    <h2 class="py-5 text-7xl text-center ">{{manganime["titre"]}} </h2>
+    <h2 class="text-2xl sm:text-7xl  ">{{manganime["titre"]}} </h2>
 
   <div class="flex justify-center">
    <img src="{{manganime['url_image']}}" class="py-5  h-96 w-3/5 ">
     </div>  
 
-   <text class="p-5">
+   <text class="p-1 sm:p-5">
    {{manganime["description"]}}
    </text>
    
@@ -35,7 +35,7 @@
   <form class="flex items-center px-48 pt-3 py-3" method="POST" action="">
   <textarea name="description" placeholder=" Votre commentaire ici" class="border border-gray-400 h-16 flex-1 
   mr-6"></textarea>
-   <button class="w-32 h-12 flex-none bg-emerald-300 hover:bg-emerald-500 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Commenter</button>
+   <button class=" h-12 flex-none bg-emerald-300 hover:bg-emerald-500 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Commenter</button>
 
  </form>
      </div>

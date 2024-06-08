@@ -3,22 +3,26 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
   <title>Animé-Manga</title>
   <link href="/static/style.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-gray-800">
   <header class="bg-gray-800 flex  justify-between  p-12 ">
   <a href="/">
-    <h1 class="hidden sm:block font-sans  text-4xl text-slate-50"> Nom du site </h1>
+    <h1 class="hidden sm:block font-sans  text-4xl text-slate-50"> Animé-Manga </h1>
   </a>
+    {% if session['util']%}
+    {% if session['util'] == "admin" %}
   <a href="/admin/back_animemanga">
     <p class=" hidden sm:block">
       Back_anime/manga
     </p>
   </a>
+    {% endif %}
+    {% endif %}
     <ul class="flex space-x-8 mr-9  ">
 
      
@@ -75,10 +79,11 @@
 
    
   </header>
+<div class="bg-gray-800 w-full text-center">
   {% block content %}
 
   {% endblock %}
-
+</div>
 <footer  class=" bg-gray-800 flex  justify-between p-7">
 
   {% if session['util'] %}
