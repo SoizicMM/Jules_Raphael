@@ -30,7 +30,7 @@
 
 
   {% endfor %}
-
+ {% if session['util'] %}
   <!-- formulaire de commentaire -->
   <form class="flex items-center px-48 pt-3 py-3" method="POST" action="">
   <textarea name="description" placeholder=" Votre commentaire ici" class="border border-gray-400 h-16 flex-1 
@@ -39,7 +39,7 @@
 
  </form>
      </div>
-
+  {% endif %}
    <div class="bg-teal-600 w-1/6 text-center">
   PUB
 </div>
