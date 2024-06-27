@@ -19,7 +19,7 @@ def index():
   # variable qui servira a contenir les infos de la bdd
   # titre du manganime : titre
   # image du manganime : url_image
-  # lien du manganime : url_manganime
+  # lien du manganime : url_manganime    
   # id du manganime : _id
   # return render_template("index.html")
   return render_template("index.html", manganimes=manganimes)
@@ -89,43 +89,49 @@ def register():
 
 @app.route("/supprimer/<id>")
 def supprimer_manganime(id):
-  db_manganime = mongo.db.manganime
-  db_manganime.delete_one({"_id": ObjectId(id)})
-  return "entrée supprimée"
-
+  if session['util'] == "admin":
+    db_manganime = mongo.db.manganime
+    db_manganime.delete_one({"_id": ObjectId(id)})
+    return "entrée supprimée"
+  else:
+    return redirect(url_for("index))
 
 @app.route('/add', methods=["POST", 'GET'])
 def add():
-  if request.method == 'POST':
-    db_manganime = mongo.db.manganime
-    db_manganime.insert_one({
-        'titre': request.form['titre'],
-        'url_image': request.form['image'],
-        'description': request.form['Description'],
-        'valide': False
-      })
-    return redirect(url_for('index'))
+  if session['util'] == "admin":
+    if request.method == 'POST':
+      db_manganime = mongo.db.manganime
+      db_manganime.insert_one({
+          'titre': request.form['titre'],
+          'url_image': request.form['image'],
+          'description': request.form['Description'],
+          'valide': False
+        })
+      return redirect(url_for('index'))
+    else:
+      return render_template('add_manga.html')
   else:
-    return render_template('add_manga.html')
+    return redirect(url_for("index))
 
 @app.route('/modifier/<id_manganime>', methods=["POST", "GET"])
 def modifier(id_manganime):
   db_manganime = mongo.db.manganime
   manganime = db_manganime.find_one({"_id": ObjectId(id_manganime)})
-
-  if request.method == "POST":
-    titre = request.form['titre']
-    description = request.form['description']
-    db_manganime.update_one(
-        {"_id": ObjectId(id_manganime)},
-        {"$set": {
-            "titre": titre,
-            "description": description
-        }})
-    return redirect(url_for("index"))
+  if session['util'] == "admin":
+    if request.method == "POST":
+      titre = request.form['titre']
+      description = request.form['description']
+      db_manganime.update_one(
+          {"_id": ObjectId(id_manganime)},
+          {"$set": {
+              "titre": titre,
+              "description": description
+          }})
+      return redirect(url_for("index"))
+    else:
+      return render_template("modifier.html", manganime=manganime)
   else:
-    return render_template("modifier.html", manganime=manganime)
-
+    return redirect(url_for("index))
 
 @app.route('/admin/back_animemanga')
 def back_animemanga():
@@ -160,16 +166,17 @@ def recherche():
 def validation(id_manganime, statut):
   db_manganime = mongo.db.manganime
   if id_manganime and statut :
-    if statut == "valide" : 
+    if session['util'] == "admin":
+      if statut == "valide" : 
       
-      db_manganime.update_one(
-        {"_id": ObjectId(id_manganime)},
-        {"$set": {
-          "valide": True
-        }}
-      )
-    elif statut == "refuse":
-      db_manganime.delete_one({"_id": ObjectId(id_manganime)})
+        db_manganime.update_one(
+          {"_id": ObjectId(id_manganime)},
+          {"$set": {
+            "valide": True
+          }}
+        )
+      elif statut == "refuse":
+        db_manganime.delete_one({"_id": ObjectId(id_manganime)})
     return redirect(url_for("file_d_attente"))
 @app.route('/file_d_attente')
 def file_d_attente():
